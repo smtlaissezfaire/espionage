@@ -78,5 +78,35 @@ Screw.Unit(function() {
         expect(helper.object).to(equal, helper.clone);
       });
     });
+    
+    describe("alias_property", function() {
+      it("should set one propery equal to another", function() {
+        helper.original_property = 7;
+        helper.alias_property("original_property", "new_property");
+        expect(helper.new_property).to(equal, 7);
+      })
+      
+      it("should set a different property", function() {
+        helper.original_property = 7;
+        helper.alias_property("original_property", "some_other_property");
+        expect(helper.some_other_property).to(equal, 7);
+      });
+      
+      it("should set the property to the same value", function() {
+        helper.original_property = 8;
+        helper.alias_property("original_property", "new_property");
+        expect(helper.new_property).to(equal, 8);
+      });
+    })
+    
+    describe("alias_method", function() {
+      it("should be an alias of alias_property", function() {
+        expect(helper.alias_property).to(equal, helper.alias_method);
+      });
+      
+      it("should have alias_method as a function", function() {
+        expect(typeof(helper.alias_method)).to(equal, "function");
+      });
+    });
   });
 });
