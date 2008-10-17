@@ -32,12 +32,24 @@ Screw.Unit(function() {
       });
 
       it("should use the method definition given if a function is given", function() {
-        a_function = function() { };
+        var a_function = function() { };
 
         stubber.stub(an_object, "foo", a_function);
         expect(an_object.foo).to(equal, a_function);
       });
     });
+    
+    describe("current_stubs", function() {
+      it("should be an empty array to begin with", function() {
+        expect(stubber.current_stubs).to(equal, []);
+      })
+      
+      it("should add an array of the object and method name of onto the stack when an object is stubbed", function() {
+        var obj = {}
+        stubber.stub(obj, "foo")
+        expect(stubber.current_stubs[0]).to(equal, [obj, "foo", undefined]);
+      })
+    })
   });
 });
   
