@@ -8,6 +8,7 @@ Screw.Unit(function() {
     before(function() {
       an_object = new Object;
       stubber = helper.clone(Screw.Unit.Extensions.Stub);
+      stubber.reset_global_stubs();
     });
     
     describe("stubbing", function() {
@@ -37,6 +38,16 @@ Screw.Unit(function() {
         stubber.stub(an_object, "foo", a_function);
         expect(an_object.foo).to(equal, a_function);
       });
+      
+      it("should replace a method definition, if it already exists", function() {
+        var func = function() {};
+        var obj = {
+          func: func
+        };
+        
+        stubber.stub(obj, "func");
+        expect(an_object.func == func).to(be_false);
+      });
     });
     
     describe("current_stubs", function() {
@@ -44,12 +55,65 @@ Screw.Unit(function() {
         expect(stubber.current_stubs).to(equal, []);
       })
       
-      it("should add an array of the object and method name of onto the stack when an object is stubbed", function() {
-        var obj = {}
-        stubber.stub(obj, "foo")
-        expect(stubber.current_stubs[0]).to(equal, [obj, "foo", undefined]);
+      it("should add an array of the object, method name, and previous definition of onto the stack when an object is stubbed", function() {
+        var obj = {};
+        stubber.stub(obj, "foo");
+        expect(stubber.current_stubs()[0]).to(equal, [obj, "foo", undefined]);
+      });
+      
+      it("should use the correct method name", function() {
+        var obj = {};
+        stubber.stub(obj, "bar");
+        expect(stubber.current_stubs()[0]).to(equal, [obj, "bar", undefined]);
+      });
+      
+      it("should have the old method definition", function() {
+        var a_function = function() {};
+        var obj = {};
+        obj.foo = a_function;
+        stubber.stub(obj, "foo");
+        expect(stubber.current_stubs()[0]).to(equal, [obj, "foo", a_function]);
+      });
+      
+      it("should have two stubs when two objects are stubbed", function() {
+        var obj1 = {};
+        var obj2 = {};
+        stubber.stub(obj1, "foo");
+        stubber.stub(obj2, "foo");
+        expect(stubber.current_stubs().length).to(equal, 2);
+      });
+    });
+    
+    describe("teardown", function() {
+      it("should remove 1 global stub", function() {
+        stubber.stub({}, "foo");
+        stubber.teardown();
+        expect(stubber.current_stubs().length).to(equal, 0);
+      });
+      
+      it("should restore the method definition to the first stub", function() {
+        var def = function() {};
+        var obj = {
+          def: def
+        };
+        stubber.stub(obj, "def");
+        stubber.teardown();
+        expect(obj.def).to(equal, def);
+      });
+      
+      it("should restore the method definition to the second stub", function() {
+        stubber.stub({}, "foo");
+        
+        var def = function() {};
+        var obj = {
+          def: def
+        };
+        stubber.stub(obj, "def");
+        stubber.teardown();
+        expect(obj.def).to(equal, def);
+        
       })
-    })
+    });
   });
 });
   
