@@ -41,6 +41,11 @@ Screw.Unit(function() {
         
         helper.include("foo.js")
         expect(message_received).to(be_true);
+      });
+      
+      it("should provide a js extension if none is given", function() {
+        helper.include("foo", mock_document);
+        expect(args[0]).to(equal, '<script type="text/javascript" src="foo.js"></script>');
       })
     });
     
