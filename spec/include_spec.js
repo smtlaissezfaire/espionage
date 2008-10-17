@@ -84,7 +84,7 @@ Screw.Unit(function() {
         var obj = {
           original_property: 7
         };
-        helper.alias_property(obj, "original_property", "new_property");
+        helper.alias_property(obj, "new_property", "original_property");
         expect(obj.new_property).to(equal, 7);
       });
       
@@ -92,7 +92,7 @@ Screw.Unit(function() {
         obj = {
           original_property: 7
         };
-        helper.alias_property(obj, "original_property", "some_other_property");
+        helper.alias_property(obj, "some_other_property", "original_property");
         expect(obj.some_other_property).to(equal, 7);
       });
       
@@ -100,7 +100,7 @@ Screw.Unit(function() {
         obj = {
           original_property: 8
         };
-        helper.alias_property(obj, "original_property", "new_property");
+        helper.alias_property(obj, "new_property", "original_property");
         expect(obj.new_property).to(equal, 8);
       });
     })
