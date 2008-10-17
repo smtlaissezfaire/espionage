@@ -9,15 +9,8 @@ Screw.Unit(function() {
     var helper = undefined;
     
     before(function() {
-      // use classical, self like prototypes.
-      // Thanks, Crockford.
-      function object(o) {
-        function F() {}
-        F.prototype = o;
-        return new F();
-      }
-      
-      helper = object(Screw.Unit.Extensions.Helpers);
+      var helper_prototype = Screw.Unit.Extensions.Helpers;
+      helper = helper_prototype.clone(helper_prototype);
     })
     
     describe("include", function() {
@@ -66,6 +59,24 @@ Screw.Unit(function() {
       // it("should return window.document when no object is passed", function() {
       //   expect(helper.document()).to(equal, window.document);
       // });
+    });
+    
+    describe("object", function() {
+      it("should return an object with it's prototype as the constructor", function() {
+        var obj = {}
+        var cloned_object = helper.object(obj)
+        
+        expect(cloned_object.__proto__).to(equal, obj)
+      });
+      
+      it("should return an object which is not equal (it should not be the same object)", function() {
+        var obj = {}
+        expect(helper.object(obj) == obj).to(be_false);
+      });
+      
+      it("should have the clone method as an alias for the object method", function() {
+        expect(helper.object).to(equal, helper.clone);
+      });
     });
   });
 });
