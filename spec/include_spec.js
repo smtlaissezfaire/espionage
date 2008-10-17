@@ -81,21 +81,27 @@ Screw.Unit(function() {
     
     describe("alias_property", function() {
       it("should set one propery equal to another", function() {
-        helper.original_property = 7;
-        helper.alias_property("original_property", "new_property");
-        expect(helper.new_property).to(equal, 7);
-      })
+        var obj = {
+          original_property: 7
+        };
+        helper.alias_property(obj, "original_property", "new_property");
+        expect(obj.new_property).to(equal, 7);
+      });
       
       it("should set a different property", function() {
-        helper.original_property = 7;
-        helper.alias_property("original_property", "some_other_property");
-        expect(helper.some_other_property).to(equal, 7);
+        obj = {
+          original_property: 7
+        };
+        helper.alias_property(obj, "original_property", "some_other_property");
+        expect(obj.some_other_property).to(equal, 7);
       });
       
       it("should set the property to the same value", function() {
-        helper.original_property = 8;
-        helper.alias_property("original_property", "new_property");
-        expect(helper.new_property).to(equal, 8);
+        obj = {
+          original_property: 8
+        };
+        helper.alias_property(obj, "original_property", "new_property");
+        expect(obj.new_property).to(equal, 8);
       });
     })
     
