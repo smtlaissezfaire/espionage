@@ -9,7 +9,7 @@ Screw.Unit(function() {
     var helper = undefined;
     
     before(function() {
-      var helper_prototype = Screw.Unit.Extensions.Helpers;
+      var helper_prototype = Project.Helpers;
       helper = helper_prototype.clone(helper_prototype);
     });
     
