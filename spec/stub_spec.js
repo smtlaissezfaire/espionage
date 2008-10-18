@@ -58,13 +58,17 @@ Screw.Unit(function() {
       it("should add an array of the object, method name, and previous definition of onto the stack when an object is stubbed", function() {
         var obj = {};
         stubber.stub(obj, "foo");
-        expect(stubber.stubs()[0]).to(equal, [obj, "foo", undefined]);
+        expect(stubber.stubs()[0]).to(equal, {
+          "object": obj, 
+          "method_name": "foo", 
+          "function": undefined
+        });
       });
       
       it("should use the correct method name", function() {
         var obj = {};
         stubber.stub(obj, "bar");
-        expect(stubber.stubs()[0]).to(equal, [obj, "bar", undefined]);
+        expect(stubber.stubs()[0]["method_name"]).to(equal, "bar");
       });
       
       it("should have the old method definition", function() {
@@ -72,7 +76,7 @@ Screw.Unit(function() {
         var obj = {};
         obj.foo = a_function;
         stubber.stub(obj, "foo");
-        expect(stubber.stubs()[0]).to(equal, [obj, "foo", a_function]);
+        expect(stubber.stubs()[0]["function"]).to(equal, a_function);
       });
       
       it("should have two stubs when two objects are stubbed", function() {
