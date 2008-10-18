@@ -116,6 +116,19 @@ Screw.Unit(function() {
         stubber.teardown();
         expect(obj.def).to(equal, def);
       });
+      
+      it("should restore the proper method definition if the method has been stubbed twice", function() {
+        var func = function() {};
+        var obj = { 
+          func: func 
+        };
+      
+        stubber.stub(obj, "func");
+        stubber.stub(obj, "func");
+        
+        stubber.teardown();
+        expect(obj.func).to(equal, func);
+      });
     });
   });
 });
