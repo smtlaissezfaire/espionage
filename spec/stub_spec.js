@@ -50,21 +50,21 @@ Screw.Unit(function() {
       });
     });
     
-    describe("current_stubs", function() {
+    describe("stubs", function() {
       it("should be an empty array to begin with", function() {
-        expect(stubber.current_stubs).to(equal, []);
+        expect(stubber.stubs).to(equal, []);
       })
       
       it("should add an array of the object, method name, and previous definition of onto the stack when an object is stubbed", function() {
         var obj = {};
         stubber.stub(obj, "foo");
-        expect(stubber.current_stubs()[0]).to(equal, [obj, "foo", undefined]);
+        expect(stubber.stubs()[0]).to(equal, [obj, "foo", undefined]);
       });
       
       it("should use the correct method name", function() {
         var obj = {};
         stubber.stub(obj, "bar");
-        expect(stubber.current_stubs()[0]).to(equal, [obj, "bar", undefined]);
+        expect(stubber.stubs()[0]).to(equal, [obj, "bar", undefined]);
       });
       
       it("should have the old method definition", function() {
@@ -72,7 +72,7 @@ Screw.Unit(function() {
         var obj = {};
         obj.foo = a_function;
         stubber.stub(obj, "foo");
-        expect(stubber.current_stubs()[0]).to(equal, [obj, "foo", a_function]);
+        expect(stubber.stubs()[0]).to(equal, [obj, "foo", a_function]);
       });
       
       it("should have two stubs when two objects are stubbed", function() {
@@ -80,7 +80,7 @@ Screw.Unit(function() {
         var obj2 = {};
         stubber.stub(obj1, "foo");
         stubber.stub(obj2, "foo");
-        expect(stubber.current_stubs().length).to(equal, 2);
+        expect(stubber.stubs().length).to(equal, 2);
       });
     });
     
@@ -88,7 +88,7 @@ Screw.Unit(function() {
       it("should remove 1 global stub", function() {
         stubber.stub({}, "foo");
         stubber.teardown();
-        expect(stubber.current_stubs().length).to(equal, 0);
+        expect(stubber.stubs().length).to(equal, 0);
       });
       
       it("should restore the method definition to the first stub", function() {
