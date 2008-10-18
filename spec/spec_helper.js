@@ -14,3 +14,11 @@ function include_screw_unit() {
   include(screw_unit_path + "/screw.events.js");
   include(screw_unit_path + "/screw.behaviors.js");
 }
+
+function include_project() {
+  include("include_spec.js");
+  include("../lib/helpers.js");
+  
+  include("stub_spec.js");
+  include("../lib/stub.js");
+}
