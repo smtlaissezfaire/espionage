@@ -1,11 +1,5 @@
 Screw.Unit(function() {
   describe("Helpers", function() {
-    var args = [];
-    var mock_document = {
-      write: function() {
-        args = arguments;
-      }
-    };
     var helper = undefined;
     
     before(function() {
@@ -56,5 +50,7 @@ Screw.Unit(function() {
         expect(obj.new_property).to(equal, 8);
       });
     });
+    
+    
   });
 });
