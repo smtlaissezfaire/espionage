@@ -4,7 +4,7 @@ function include(jsFile) {
 
 load = include;
 
-function include_screw_unit() {
+function load_screw_unit() {
   var project_root = "..";
   var screw_unit_path = project_root + "/vendor/screw_unit/lib";
   
@@ -17,7 +17,7 @@ function include_screw_unit() {
   load(screw_unit_path + "/screw.behaviors.js");
 }
 
-function include_project() {
+function load_project() {
   load("include_spec.js");
   load("../lib/helpers.js");
   load("stub_spec.js");
