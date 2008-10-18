@@ -18,11 +18,11 @@ function load_screw_unit() {
 }
 
 function load_project() {
-  load("project/include_spec.js");
-  load("project/stub_spec.js");
+  load("../lib/project/helpers.js");
+  load("../lib/project/stub.js");
 }
 
 function load_specs() {
-  load("../lib/project/helpers.js");
-  load("../lib/project/stub.js");
+  load("project/include_spec.js");
+  load("project/stub_spec.js");
 }
