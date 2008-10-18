@@ -18,8 +18,8 @@ function load_screw_unit() {
 }
 
 function load_project() {
-  load("include_spec.js");
-  load("stub_spec.js");
+  load("project/include_spec.js");
+  load("project/stub_spec.js");
 }
 
 function load_specs() {
