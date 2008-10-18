@@ -8,7 +8,7 @@ Screw.Unit(function() {
     before(function() {
       an_object = new Object;
       stubber = helper.clone(Screw.Unit.Extensions.Stub);
-      stubber.reset_global_stubs();
+      stubber.teardown();
     });
     
     describe("stubbing", function() {
