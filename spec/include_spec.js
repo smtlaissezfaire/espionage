@@ -79,12 +79,12 @@ Screw.Unit(function() {
       });
     });
     
-    describe("alias_property", function() {
+    describe("alias", function() {
       it("should set one propery equal to another", function() {
         var obj = {
           original_property: 7
         };
-        helper.alias_property(obj, "new_property", "original_property");
+        helper.alias(obj, "new_property", "original_property");
         expect(obj.new_property).to(equal, 7);
       });
       
@@ -92,7 +92,7 @@ Screw.Unit(function() {
         obj = {
           original_property: 7
         };
-        helper.alias_property(obj, "some_other_property", "original_property");
+        helper.alias(obj, "some_other_property", "original_property");
         expect(obj.some_other_property).to(equal, 7);
       });
       
@@ -100,18 +100,8 @@ Screw.Unit(function() {
         obj = {
           original_property: 8
         };
-        helper.alias_property(obj, "new_property", "original_property");
+        helper.alias(obj, "new_property", "original_property");
         expect(obj.new_property).to(equal, 8);
-      });
-    });
-    
-    describe("alias_method", function() {
-      it("should be an alias of alias_property", function() {
-        expect(helper.alias_property).to(equal, helper.alias_method);
-      });
-      
-      it("should have alias_method as a function", function() {
-        expect(typeof(helper.alias_method)).to(equal, "function");
       });
     });
   });
