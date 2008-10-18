@@ -3,8 +3,8 @@ function include(jsFile) {
 }
 
 function include_screw_unit() {
-  var project_root = ".."
-  var screw_unit_path = project_root + "/vendor/screw_unit/lib"
+  var project_root = "..";
+  var screw_unit_path = project_root + "/vendor/screw_unit/lib";
   
   include(screw_unit_path + "/jquery-1.2.3.js");
   include(screw_unit_path + "/jquery.fn.js");

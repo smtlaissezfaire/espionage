@@ -13,7 +13,7 @@ Screw.Unit(function() {
     
     describe("stubbing", function() {
       it("should add a method onto an object which doesn't have one", function() {
-        stubber.stub(an_object, "foo")
+        stubber.stub(an_object, "foo");
         expect(typeof(an_object.foo)).to(equal, "function");
       });
 
@@ -53,7 +53,7 @@ Screw.Unit(function() {
     describe("stubs", function() {
       it("should be an empty array to begin with", function() {
         expect(stubber.stubs).to(equal, []);
-      })
+      });
       
       it("should add an array of the object, method name, and previous definition of onto the stack when an object is stubbed", function() {
         var obj = {};
@@ -115,8 +115,7 @@ Screw.Unit(function() {
         stubber.stub(obj, "def");
         stubber.teardown();
         expect(obj.def).to(equal, def);
-        
-      })
+      });
     });
   });
 });

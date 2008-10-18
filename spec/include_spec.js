@@ -11,7 +11,7 @@ Screw.Unit(function() {
     before(function() {
       var helper_prototype = Screw.Unit.Extensions.Helpers;
       helper = helper_prototype.clone(helper_prototype);
-    })
+    });
     
     describe("include", function() {
       it("should insert the js file into the document", function() {
@@ -32,19 +32,19 @@ Screw.Unit(function() {
           return(mock_document);
         };
         
-        helper.include("foo.js")
+        helper.include("foo.js");
         expect(message_received).to(be_true);
       });
       
       it("should provide a js extension if none is given", function() {
         helper.include("foo", mock_document);
         expect(args[0]).to(equal, '<script type="text/javascript" src="foo.js"></script>');
-      })
+      });
     });
     
     describe("find_document", function() {
       it("should return an empty object when the object passed is an empty object", function() {
-        var obj = {}
+        var obj = {};
         expect(helper.find_document(obj)).to(equal, obj);
       });
 
@@ -63,14 +63,14 @@ Screw.Unit(function() {
     
     describe("object", function() {
       it("should return an object with it's prototype as the constructor", function() {
-        var obj = {}
-        var cloned_object = helper.object(obj)
+        var obj = {};
+        var cloned_object = helper.object(obj);
         
-        expect(cloned_object.__proto__).to(equal, obj)
+        expect(cloned_object.__proto__).to(equal, obj);
       });
       
       it("should return an object which is not equal (it should not be the same object)", function() {
-        var obj = {}
+        var obj = {};
         expect(helper.object(obj) == obj).to(be_false);
       });
       
@@ -103,7 +103,7 @@ Screw.Unit(function() {
         helper.alias_property(obj, "new_property", "original_property");
         expect(obj.new_property).to(equal, 8);
       });
-    })
+    });
     
     describe("alias_method", function() {
       it("should be an alias of alias_property", function() {
