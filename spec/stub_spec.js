@@ -60,7 +60,7 @@ Screw.Unit(function() {
         stubber.stub(obj, "foo");
         expect(stubber.stubs()[0]).to(equal, {
           "object": obj, 
-          "method_name": "foo", 
+          "methodName": "foo", 
           "function": undefined
         });
       });
@@ -68,7 +68,7 @@ Screw.Unit(function() {
       it("should use the correct method name", function() {
         var obj = {};
         stubber.stub(obj, "bar");
-        expect(stubber.stubs()[0]["method_name"]).to(equal, "bar");
+        expect(stubber.stubs()[0]["methodName"]).to(equal, "bar");
       });
       
       it("should have the old method definition", function() {
@@ -131,16 +131,16 @@ Screw.Unit(function() {
       });
     });
     
-    describe("and_return", function() {
+    describe("andReturn", function() {
       it("should set the value of the stub", function() {
         var obj = {};
-        stubber.stub(obj, "foo").and_return(1);
+        stubber.stub(obj, "foo").andReturn(1);
         expect(obj.foo()).to(equal, 1);
       });
       
       it("should set the correct value to the stub", function() {
         var obj = {};
-        stubber.stub(obj, "foo").and_return(2);
+        stubber.stub(obj, "foo").andReturn(2);
         expect(obj.foo()).to(equal, 2);
       });
       
@@ -161,7 +161,7 @@ Screw.Unit(function() {
 
       it("should be able to set a return value on the stub", function() {
         var obj = {};
-        obj.stub("foo").and_return(1);
+        obj.stub("foo").andReturn(1);
         expect(obj.foo()).to(equal, 1);
       });
     });
