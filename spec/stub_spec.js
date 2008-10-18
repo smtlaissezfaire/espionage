@@ -130,6 +130,41 @@ Screw.Unit(function() {
         expect(obj.func).to(equal, func);
       });
     });
+    
+    describe("and_return", function() {
+      it("should set the value of the stub", function() {
+        var obj = {};
+        stubber.stub(obj, "foo").and_return(1);
+        expect(obj.foo()).to(equal, 1);
+      });
+      
+      it("should set the correct value to the stub", function() {
+        var obj = {};
+        stubber.stub(obj, "foo").and_return(2);
+        expect(obj.foo()).to(equal, 2);
+      });
+      
+      it("should return true");
+    });
+    
+    describe("an object", function() {
+      it("should have the stub method", function() {
+        var obj = {};
+        expect(typeof(obj.stub)).to(equal, "function");
+      });
+      
+      it("should be able to stub a method", function() {
+        var obj = {};
+        obj.stub("foo");
+        expect(typeof(obj.foo)).to(equal, "function");
+      });
+
+      it("should be able to set a return value on the stub", function() {
+        var obj = {};
+        obj.stub("foo").and_return(1);
+        expect(obj.foo()).to(equal, 1);
+      });
+    });
   });
 });
   
