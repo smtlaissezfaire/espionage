@@ -23,6 +23,6 @@ function load_project() {
 }
 
 function load_specs() {
-  load("../lib/helpers.js");
-  load("../lib/stub.js");
+  load("../lib/project/helpers.js");
+  load("../lib/project/stub.js");
 }
