@@ -50,7 +50,5 @@ Screw.Unit(function() {
         expect(obj.new_property).to(equal, 8);
       });
     });
-    
-    
   });
 });
