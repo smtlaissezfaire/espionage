@@ -1,8 +1,8 @@
-function include(jsFile) {
+function cold_start_load(jsFile) {
   document.write('<script type="text/javascript" src="' + jsFile + '"></script>');
 }
 
-load = include;
+load = cold_start_load;
 
 function load_screw_unit() {
   var project_root = "..";
