@@ -13,3 +13,5 @@ task :jsl do
     end
   end
 end
+
+task :default => :jsl
