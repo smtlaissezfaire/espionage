@@ -93,6 +93,67 @@ Screw.Unit(function() {
         });
       });
     });
+    
+    describe("arguments", function() {
+      before(function() {
+        spy.reset(obj);
+        obj.stub("foo");
+      });
+      
+      it("should have an empty array of arguments when none are provided", function() {
+        spy.spy_on(obj, function() {
+          obj.foo();
+          expect(obj.argumentsFor("foo")).to(equal, [[]]);
+        });
+      });
+      
+      it("should have one argument when given", function() {
+        spy.spy_on(obj, function() {
+          obj.foo("bar");
+          expect(obj.argumentsFor("foo")).to(equal, [["bar"]]);
+        });
+      });
+      
+      it("should have two arguments when given", function() {
+        spy.spy_on(obj, function() {
+          obj.foo(1, 2);
+          expect(obj.argumentsFor("foo")).to(equal, [[1,2]]);
+        });
+      });
+      
+      it("should use the correct method", function() {
+        obj.stub("bar");
+        
+        spy.spy_on(obj, function() {
+          obj.bar(1, 2);
+          expect(obj.argumentsFor("bar")).to(equal, [[1,2]]);
+        });
+      });
+      
+      it("should return undefined if the method was never called", function() {
+        spy.spy_on(obj, function() {
+          expect(obj.argumentsFor("bar")).to(equal, undefined);
+        });
+      });
+      
+      it("should return an array when passed an array", function() {
+        var an_object = {};
+        an_object.stub("foo");
+        
+        spy.spy_on(an_object, function() {
+          an_object.foo([]);
+          expect(an_object.argumentsFor("foo")).to(equal, [[[]]]);
+        });
+      });
+      
+      it("should return two pairs of arguments if called twice", function() {
+        spy.spy_on(obj, function() {
+          obj.foo();
+          obj.foo();
+          expect(obj.argumentsFor("foo")).to(equal, [[], []]);
+        });
+      });
+    });
   });
 });
     
