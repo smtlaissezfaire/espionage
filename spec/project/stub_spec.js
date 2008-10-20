@@ -3,11 +3,11 @@ Screw.Unit(function() {
     
     var stubber = undefined;
     var an_object = undefined;
-    var helper = Project.Helpers;
+    var helper = Espionage.Helpers;
     
     before(function() {
       an_object = new Object;
-      stubber = helper.clone(Project.Stub);
+      stubber = helper.clone(Espionage.Stub);
       stubber.teardown();
     });
     

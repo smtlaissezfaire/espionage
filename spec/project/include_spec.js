@@ -3,7 +3,7 @@ Screw.Unit(function() {
     var helper = undefined;
     
     before(function() {
-      var helper_prototype = Project.Helpers;
+      var helper_prototype = Espionage.Helpers;
       helper = helper_prototype.clone(helper_prototype);
     });
     

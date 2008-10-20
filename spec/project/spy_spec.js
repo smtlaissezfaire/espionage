@@ -5,7 +5,7 @@ Screw.Unit(function() {
     
     before(function() {
       obj = {};
-      spy = Project.Helpers.clone(Project.Spy);
+      spy = Espionage.Helpers.clone(Espionage.Spy);
     });
     
     describe("spyOn", function() {
