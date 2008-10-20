@@ -154,6 +154,21 @@ Screw.Unit(function() {
         });
       });
     });
+    
+    describe("namespacing", function() {
+      it("should be able to call spyOn without calling spy inside the context of an example", function() {
+        expect(spyOn === undefined).to(be_false);
+      });
+      
+      it("should not polute the global namespace", function() {
+        var obj = {};
+        expect(obj.spyOn).to(equal, undefined);
+      });
+      
+      it("should have spyOn as an alias for Espionage.Spy.spyOn", function() {
+        expect(spyOn === Espionage.Spy.spyOn).to(be_true);
+      });
+    });
   });
 });
     
