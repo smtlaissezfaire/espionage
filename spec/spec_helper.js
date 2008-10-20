@@ -20,9 +20,11 @@ function load_screw_unit() {
 function load_project() {
   load("../lib/project/helpers.js");
   load("../lib/project/stub.js");
+  load("../lib/project/spy.js");
 }
 
 function load_specs() {
   load("project/include_spec.js");
   load("project/stub_spec.js");
+  load("project/spy_spec.js");
 }
