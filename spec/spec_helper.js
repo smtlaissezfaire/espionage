@@ -21,10 +21,12 @@ function load_project() {
   load("../lib/espionage/helpers.js");
   load("../lib/espionage/stub.js");
   load("../lib/espionage/spy.js");
+  load("../lib/espionage/screw_unit/matchers/spy.js");
 }
 
 function load_specs() {
   load("espionage/include_spec.js");
   load("espionage/stub_spec.js");
   load("espionage/spy_spec.js");
+  load("espionage/screw_unit_matchers_spec.js");
 }
