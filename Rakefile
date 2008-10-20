@@ -14,4 +14,9 @@ task :jsl do
   end
 end
 
+desc "Run specs by opening in browser.  Only works on OS X"
+task :spec do
+  `open spec/suite.html`
+end
+
 task :default => :jsl
