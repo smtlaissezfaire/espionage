@@ -18,9 +18,9 @@ function load_screw_unit() {
 }
 
 function load_project() {
-  load("../lib/project/helpers.js");
-  load("../lib/project/stub.js");
-  load("../lib/project/spy.js");
+  load("../lib/espionage/helpers.js");
+  load("../lib/espionage/stub.js");
+  load("../lib/espionage/spy.js");
 }
 
 function load_specs() {
