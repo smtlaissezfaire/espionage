@@ -40,13 +40,13 @@ Screw.Unit(function() {
             it("should match when the argument has been called", function() {
               spy.spyOn(obj, function() {
                 obj.foo();
-                expect(matcher.match(obj, "foo")).to(be_true);
+                expect(matcher(obj).match(null, "foo")).to(be_true);
               });
             });
             
             it("should not match when the method hasn't been called", function() {
               spy.spyOn(obj, function() {
-                expect(matcher.match(obj, "foo")).to(be_false);
+                expect(matcher(obj).match(null, "foo")).to(be_false);
               });
             });
           });
@@ -55,15 +55,15 @@ Screw.Unit(function() {
             describe("positive failure message", function() {
               it("should have the correct failure message", function() {
                 var message = "Expected 'foo' to be called";
-
+                
                 spy.spyOn(obj, function() {
-                  expect(matcher.failure_message(obj, "foo", false)).to(equal, message);
+                  expect(matcher(obj).failure_message(null, "foo", false)).to(equal, message);
                 });
               });
-
+                
               it("should use the proper message name", function() {
                 spy.spyOn(obj, function() {
-                  expect(matcher.failure_message(obj, "bar", false)).to(match, /bar/);
+                  expect(matcher(obj).failure_message(null, "bar", false)).to(match, /bar/);
                 });
               });
             });
@@ -71,15 +71,15 @@ Screw.Unit(function() {
             describe("negative failure_message", function() {
               it("should have the message expectation", function() {
                 var message = "Expected 'foo' to not be called";
-
+                
                 spy.spyOn(obj, function() {
-                  expect(matcher.failure_message(obj, "foo", true)).to(equal, message);
+                  expect(matcher(obj).failure_message(null, "foo", true)).to(equal, message);
                 });
               });
-
+                
               it("should use the proper message name", function() {
                 spy.spyOn(obj, function() {
-                  expect(matcher.failure_message(obj, "bar", true)).to(match, /bar/);
+                  expect(matcher(obj).failure_message(null, "bar", true)).to(match, /bar/);
                 });
               });
             });
@@ -89,17 +89,17 @@ Screw.Unit(function() {
         it("should pass #haveBeenCalledOn when it's been invoked", function() {
           spy.spyOn(obj, function() {
             obj.foo();
-            expect("foo").to(haveBeenCalledOn, obj);
+            expect("foo").to(haveBeenCalledOn(obj));
           });
         });
         
         it("should fail #haveBeenCalledOn when it hasn't been invoked at all", function() {
           spy.spyOn(obj, function() {
-            expect("foo").to_not(haveBeenCalledOn, obj);
+            expect("foo").to_not(haveBeenCalledOn(obj));
           });
         });
       });
-
+      
       describe("#haveReceived", function() {
         var obj = {};
         
@@ -119,13 +119,13 @@ Screw.Unit(function() {
             it("should match when the argument has been called", function() {
               spy.spyOn(obj, function() {
                 obj.foo();
-                expect(matcher.match("foo", obj)).to(be_true);
+                expect(matcher("foo").match(null, obj)).to(be_true);
               });
             });
             
             it("should not match when the method hasn't been called", function() {
               spy.spyOn(obj, function() {
-                expect(matcher.match("foo", obj)).to(be_false);
+                expect(matcher("foo").match(null, obj)).to(be_false);
               });
             });
           });
@@ -136,13 +136,13 @@ Screw.Unit(function() {
                 var message = "Expected 'foo' to be called";
         
                 spy.spyOn(obj, function() {
-                  expect(matcher.failure_message("foo", obj, false)).to(equal, message);
+                  expect(matcher("foo").failure_message(null, obj, false)).to(equal, message);
                 });
               });
         
               it("should use the proper message name", function() {
                 spy.spyOn(obj, function() {
-                  expect(matcher.failure_message("bar", obj, false)).to(match, /bar/);
+                  expect(matcher("bar").failure_message(null, obj, false)).to(match, /bar/);
                 });
               });
             });
@@ -150,31 +150,31 @@ Screw.Unit(function() {
             describe("negative failure_message", function() {
               it("should have the message expectation", function() {
                 var message = "Expected 'foo' to not be called";
-        
+                    
                 spy.spyOn(obj, function() {
-                  expect(matcher.failure_message("foo", obj, true)).to(equal, message);
+                  expect(matcher("foo").failure_message(null, obj, true)).to(equal, message);
                 });
               });
-        
+              
               it("should use the proper message name", function() {
                 spy.spyOn(obj, function() {
-                  expect(matcher.failure_message("bar", obj, true)).to(match, /bar/);
+                  expect(matcher("bar").failure_message(null, obj, true)).to(match, /bar/);
                 });
               });
             });
           });
         });
-
+      
         it("should pass #haveReceived when it's been invoked", function() {
           spy.spyOn(obj, function() {
             obj.foo();
-            expect(obj).to(haveReceived, "foo");
+            expect(obj).to(haveReceived("foo"));
           });
         });
         
         it("should fail #haveReceived when it hasn't been invoked at all", function() {
           spy.spyOn(obj, function() {
-            expect(obj).to_not(haveReceived, "foo");
+            expect(obj).to_not(haveReceived("foo"));
           });
         });
       });
