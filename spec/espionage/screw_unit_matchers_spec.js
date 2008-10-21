@@ -91,7 +91,7 @@ Screw.Unit(function() {
         });
       });
 
-      describe("#have_received", function() {
+      describe("#haveReceived", function() {
         var obj = {};
         
         before(function() {
@@ -103,7 +103,7 @@ Screw.Unit(function() {
           var matcher;
           
           before(function() {
-            matcher = helper.clone(Espionage.ScrewUnit.Matchers).have_received;
+            matcher = helper.clone(Espionage.ScrewUnit.Matchers).haveReceived;
           });
           
           describe("matching", function() {
@@ -156,16 +156,16 @@ Screw.Unit(function() {
           });
         });
 
-        it("should pass #have_received when it's been invoked", function() {
+        it("should pass #haveReceived when it's been invoked", function() {
           spy.spyOn(obj, function() {
             obj.foo();
-            expect(obj).to(have_received, "foo");
+            expect(obj).to(haveReceived, "foo");
           });
         });
         
-        it("should fail #have_received when it hasn't been invoked at all", function() {
+        it("should fail #haveReceived when it hasn't been invoked at all", function() {
           spy.spyOn(obj, function() {
-            expect(obj).to_not(have_received, "foo");
+            expect(obj).to_not(haveReceived, "foo");
           });
         });
       });
