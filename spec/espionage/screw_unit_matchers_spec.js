@@ -42,7 +42,6 @@ Screw.Unit(function() {
           });
           
           describe("failure_message", function() {
-            
             describe("positive failure message", function() {
               it("should have the correct failure message", function() {
                 var message = "Expected 'foo' to be called";
