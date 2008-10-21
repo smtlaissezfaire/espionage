@@ -21,7 +21,7 @@ function load_project() {
   load("../lib/espionage/helpers.js");
   load("../lib/espionage/stub.js");
   load("../lib/espionage/spy.js");
-  load("../lib/espionage/screw_unit/matchers/spy.js");
+  load("../lib/espionage/screw_unit/matchers.js");
 }
 
 function load_specs() {

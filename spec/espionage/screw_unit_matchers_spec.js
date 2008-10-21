@@ -7,7 +7,7 @@ Screw.Unit(function() {
       var spy;
       
       before(function() {
-        spy_matcher = helper.clone(Espionage.ScrewUnit.Matchers.Spy);
+        spy_matcher = helper.clone(Espionage.ScrewUnit.Matchers);
         spy         = helper.clone(Espionage.Spy);
       });
       
@@ -23,7 +23,7 @@ Screw.Unit(function() {
           var matcher;
           
           before(function() {
-            matcher = helper.clone(Espionage.ScrewUnit.Matchers.Spy).have_been_called_on;
+            matcher = helper.clone(Espionage.ScrewUnit.Matchers).have_been_called_on;
           });
           
           describe("matching", function() {
@@ -103,7 +103,7 @@ Screw.Unit(function() {
           var matcher;
           
           before(function() {
-            matcher = helper.clone(Espionage.ScrewUnit.Matchers.Spy).have_received;
+            matcher = helper.clone(Espionage.ScrewUnit.Matchers).have_received;
           });
           
           describe("matching", function() {
