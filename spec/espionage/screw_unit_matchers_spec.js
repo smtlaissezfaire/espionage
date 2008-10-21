@@ -2,6 +2,16 @@ Screw.Unit(function() {
   describe("Screw Unit Matchers", function() {
     var helper = Espionage.Helpers;
     
+    describe("top-level matchers added to Screw.Unit", function() {
+      it("should have the matcher haveBeenCalledOn", function() {
+        expect(Screw.Matchers.haveBeenCalledOn).to(equal, Espionage.ScrewUnit.Matchers.haveBeenCalledOn);
+      });
+      
+      it("should have the matcher haveReceived", function() {
+        expect(Screw.Matchers.haveBeenCalledOn).to(equal, Espionage.ScrewUnit.Matchers.haveBeenCalledOn);
+      });
+    });
+    
     describe("Method Expectations", function() {
       var spy_matcher;
       var spy;
