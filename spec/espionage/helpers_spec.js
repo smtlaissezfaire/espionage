@@ -118,5 +118,27 @@ Screw.Unit(function() {
         expect(error.message).to(equal, "Invalid number. numberToWord only accepts positive integers");
       });
     });
+    
+    describe("number of times in words", function() {
+      it("should have '1' as 'once'", function() {
+        expect(helper.numberOfTimesInWords(1)).to(equal, "once");
+      });
+      
+      it("should have '2' as 'twice'", function() {
+        expect(helper.numberOfTimesInWords(2)).to(equal, "twice");
+      });
+      
+      it("should have '3' as 'three times'", function() {
+        expect(helper.numberOfTimesInWords(3)).to(equal, "three times");
+      });
+      
+      it("should have '4' as 'four times'", function() {
+        expect(helper.numberOfTimesInWords(4)).to(equal, "four times");
+      });
+      
+      it("should have '0' as 'zero times'", function() {
+        expect(helper.numberOfTimesInWords(0)).to(equal, "zero times");
+      });
+    });
   });
 });
