@@ -323,6 +323,13 @@ Screw.Unit(function() {
               expect(result).to(match, /bar/);
             });
           });
+          
+          describe("arguments", function() {
+            it("should have arguments as an alias for argument", function() {
+              var obj = Espionage.ScrewUnit.Matchers.haveReceived();
+              expect(obj.arguments).to(equal, obj.argument);
+            });
+          });
         });
       });
     });
