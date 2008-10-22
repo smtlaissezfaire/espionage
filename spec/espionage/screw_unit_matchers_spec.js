@@ -272,20 +272,6 @@ Screw.Unit(function() {
               expect(result).to(equal, "Expected 'foo' to be called with one argument, but was called with three");
             });
             
-            it("should use '4' when called with four args", function() {
-              obj.stub("argumentsFor").andReturn([[1, 2, 3, 4]]);
-              
-              var result = haveReceived("foo").With(1).argument.failure_message(null, obj, false);
-              expect(result).to(match, /but was called with 4/);
-            });
-            
-            it("should use '5' when called with four args", function() {
-              obj.stub("argumentsFor").andReturn([[1, 2, 3, 4, 5]]);
-              
-              var result = haveReceived("foo").With(1).argument.failure_message(null, obj, false);
-              expect(result).to(match, /5/);
-            });
-
             it("should use '12' when called with 12 args", function() {
               obj.stub("argumentsFor").andReturn([[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]]);
               
