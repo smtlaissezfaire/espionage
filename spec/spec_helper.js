@@ -25,7 +25,7 @@ function load_project() {
 }
 
 function load_specs() {
-  load("espionage/include_spec.js");
+  load("espionage/helpers_spec.js");
   load("espionage/stub_spec.js");
   load("espionage/spy_spec.js");
   load("espionage/screw_unit_matchers_spec.js");
