@@ -137,4 +137,36 @@ describe("Helpers", function() {
       expect(helper.numberOfTimesInWords(0)).to(equal, "zero times");
     });
   });
+
+  describe("hasProperty", function() {
+    it("should be true for an object which has defined the property", function() {
+      var obj = {};
+      obj.foo = "bar";
+
+      helper.hasProperty(obj, "foo").should.be(true);
+    });
+
+    it("should be false for an object which hasn't", function() {
+      var obj = {};
+
+      helper.hasProperty(obj, "foo").should.be(false);
+    });
+
+    it("should be true for an object which has defined it, but it is set to undefined", function() {
+      var obj = {};
+      obj.foo = undefined;
+
+      helper.hasProperty(obj, "foo").should.be(true);
+    });
+
+    it("should be true for an object which has inherited the property", function() {
+      var prototype = {
+        foo: "bar"
+      };
+
+      clone = helper.clone(prototype);
+
+      helper.hasProperty(clone, "foo").should.be(true);
+    });
+  });
 });
