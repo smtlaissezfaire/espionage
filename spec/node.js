@@ -9,5 +9,6 @@ JSpec.
   exec('spec/espionage/helpers_spec.js').
   exec('spec/espionage/spy_spec.js').
   exec('spec/espionage/stub_spec.js').
+  exec('spec/espionage/global_spec.js').
   run({ reporter: JSpec.reporters.Terminal, fixturePath: 'spec/fixtures' }).
   report();
