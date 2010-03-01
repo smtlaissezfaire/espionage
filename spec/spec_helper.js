@@ -8,7 +8,7 @@ Espionage.SpecHelpers.Loader = function() {
   function coldStartLoad(jsFile) {
     document.write('<script type="text/javascript" src="' + jsFile + '"></script>');
   }
-  
+
   var loadFile = coldStartLoad;
 
   function loadScrewUnit() {
@@ -37,13 +37,13 @@ Espionage.SpecHelpers.Loader = function() {
     var spec_path = "espionage";
     loadFile(spec_path + "/screw_unit_matchers_spec.js");
   }
-  
+
   var load = function() {
     loadScrewUnit();
     loadProject();
     loadSpecs();
   };
-  
+
   return {
     load: load
   };
