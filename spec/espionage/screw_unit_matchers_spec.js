@@ -1,6 +1,8 @@
 Screw.Unit(function() {
   describe("Screw Unit Matchers", function() {
-    var helper = Espionage.Helpers;
+    before(function() {
+      helper = Espionage.Helpers;
+    });
     
     describe("top-level matchers added to Screw.Unit", function() {
       it("should have the matcher haveBeenCalledOn", function() {
@@ -13,25 +15,18 @@ Screw.Unit(function() {
     });
     
     describe("Method Expectations", function() {
-      var spy_matcher;
-      var spy;
-      
       before(function() {
         spy_matcher = helper.clone(Espionage.ScrewUnit.Matchers);
         spy         = helper.clone(Espionage.Spy);
       });
       
       describe("#haveBeenCalledOn", function() {
-        var obj = {};
-        
         before(function() {
           obj = {};
           obj.stub("foo");
         });
         
         describe("internals", function() {
-          var matcher;
-          
           before(function() {
             matcher = helper.clone(Espionage.ScrewUnit.Matchers).haveBeenCalledOn;
           });
@@ -40,6 +35,7 @@ Screw.Unit(function() {
             it("should match when the argument has been called", function() {
               spy.spyOn(obj, function() {
                 obj.foo();
+                expect(obj.received("foo")).to(be_true);
                 expect(matcher(obj).match(null, "foo")).to(be_true);
               });
             });
@@ -92,7 +88,7 @@ Screw.Unit(function() {
             expect("foo").to(haveBeenCalledOn(obj));
           });
         });
-        
+
         it("should fail #haveBeenCalledOn when it hasn't been invoked at all", function() {
           spy.spyOn(obj, function() {
             expect("foo").to_not(haveBeenCalledOn(obj));

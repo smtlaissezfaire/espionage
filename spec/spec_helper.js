@@ -35,7 +35,6 @@ Espionage.SpecHelpers.Loader = function() {
 
   function loadSpecs() {
     var spec_path = "espionage";
-
     loadFile(spec_path + "/screw_unit_matchers_spec.js");
   }
   
