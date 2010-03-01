@@ -4,6 +4,8 @@ A javascript mocking/stubbing framework
 
 == stubbing
 
+  var obj = {};
+
   obj.stub("foo")
   obj.hasOwnProperty("foo") #=> true
 
