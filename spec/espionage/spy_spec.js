@@ -21,9 +21,14 @@ describe("Spy", function() {
       expect(called).to(equal, true);
     });
 
-    it("should report false when receiving a message", function() {
+    it("should throw a Espionage.MockExpectionError when receiving a message", function() {
       spy.spyOn(obj, function() {
-        expect(obj.received("foo")).to(be_false);
+        try {
+          obj.received("foo");
+        } catch (e) {
+          e.name.should.equal("MockExpectationError");
+          e.message.should.equal("expected foo but never got it");
+        }
       });
     });
 
@@ -41,7 +46,11 @@ describe("Spy", function() {
 
       spy.reset(obj);
 
-      expect(obj.received("foo")).to(be_false);
+      try {
+        obj.received("foo");
+      } catch (e) {
+        e.name.should.equal("MockExpectationError");
+      }
     });
 
     it("should report a positive message expectation on a different method", function() {
@@ -61,16 +70,25 @@ describe("Spy", function() {
       });
     });
 
-    it("should be false when the wrong method is called", function() {
+    it("should raise an error", function() {
       spy.spyOn(obj, function() {
         obj.foo();
-        expect(obj.received("bar")).to(be_false);
+
+        try {
+          obj.received("bar");
+        } catch (e) {
+          e.name.should.equal("MockExpectationError");
+        }
       });
     });
 
-    it("should return false for a method which is not defined", function() {
+    it("should raise an error for a method which is not defined", function() {
       spy.spyOn(obj, function() {
-        expect(obj.received("baz")).to(be_false);
+        try {
+          obj.received("baz");
+        } catch (e) {
+          e.name.should.equal("MockExpectationError");
+        }
       });
     });
 
