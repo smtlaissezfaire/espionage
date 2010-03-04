@@ -134,22 +134,6 @@ describe("Stub", function() {
     });
   });
 
-  describe("andReturn", function() {
-    it("should set the value of the stub", function() {
-      var obj = {};
-      stubber.stub(obj, "foo").andReturn(1);
-      expect(obj.foo()).to(equal, 1);
-    });
-
-    it("should set the correct value to the stub", function() {
-      var obj = {};
-      stubber.stub(obj, "foo").andReturn(2);
-      expect(obj.foo()).to(equal, 2);
-    });
-
-    it("should return true", function() {});
-  });
-
   describe("an object", function() {
     it("should have the stub method", function() {
       var obj = {};
@@ -164,7 +148,7 @@ describe("Stub", function() {
 
     it("should be able to set a return value on the stub", function() {
       var obj = {};
-      obj.stub("foo").andReturn(1);
+      obj.stub("foo", 1);
       expect(obj.foo()).to(equal, 1);
     });
   });
