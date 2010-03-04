@@ -7,7 +7,7 @@ describe("Spy", function() {
 
   describe("spyOn", function() {
     before_each(function() {
-      spy.reset(obj);
+      spy.teardown(obj);
       stubber.stub(obj, "foo");
     });
 
@@ -45,7 +45,7 @@ describe("Spy", function() {
         obj.foo();
       });
 
-      spy.reset(obj);
+      spy.teardown(obj);
 
       try {
         obj.received("foo");
@@ -111,7 +111,7 @@ describe("Spy", function() {
 
   describe("arguments", function() {
     before_each(function() {
-      spy.reset(obj);
+      spy.teardown(obj);
       stubber.stub(obj, "foo");
     });
 
