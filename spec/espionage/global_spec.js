@@ -2,7 +2,7 @@ describe("Espionage", function() {
   describe("global methods", function() {
     describe("stub", function() {
       before(function() {
-        Espionage.Stub.teardown();
+        Espionage.Stub.tearDown();
       });
 
       it("should restore a prototype property appropriately", function() {
@@ -14,7 +14,7 @@ describe("Espionage", function() {
         // var obj = Espionage.Helpers.clone(proto);
         // obj.stub("foo");
         //
-        // Espionage.Stub.teardown();
+        // Espionage.Stub.tearDown();
         //
         // obj.foo.should.equal("bar");
       });

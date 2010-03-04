@@ -2,7 +2,7 @@ describe("Stub", function() {
   before(function() {
     an_object = {};
     stubber = Espionage.Helpers.clone(Espionage.Stub);
-    stubber.teardown();
+    stubber.tearDown();
   });
 
   describe("stubbing", function() {
@@ -49,11 +49,11 @@ describe("Stub", function() {
       obj.foo().should.equal(undefined);
     });
 
-    it("should delete the property of an object which wasn't defined after teardown", function() {
+    it("should delete the property of an object which wasn't defined after tearDown", function() {
       var obj = {};
 
       stubber.stub(obj, "foo");
-      Espionage.Stub.teardown();
+      Espionage.Stub.tearDown();
       obj.hasOwnProperty("foo").should.be(false);
     });
 
@@ -62,7 +62,7 @@ describe("Stub", function() {
 
       obj.foo = undefined;
       stubber.stub(obj, "foo");
-      Espionage.Stub.teardown();
+      Espionage.Stub.tearDown();
 
       obj.hasOwnProperty("foo").should.be(true);
     });
@@ -70,7 +70,7 @@ describe("Stub", function() {
 
   describe("stubs", function() {
     before_each(function() {
-      stubber.teardown();
+      stubber.tearDown();
     });
 
     it("should be an empty array to begin with", function() {
@@ -115,10 +115,10 @@ describe("Stub", function() {
     });
   });
 
-  describe("teardown", function() {
+  describe("tearDown", function() {
     it("should remove 1 global stub", function() {
       stubber.stub({}, "foo");
-      stubber.teardown();
+      stubber.tearDown();
       expect(stubber.stubs().length).to(equal, 0);
     });
 
@@ -128,7 +128,7 @@ describe("Stub", function() {
         def: def
       };
       stubber.stub(obj, "def");
-      stubber.teardown();
+      stubber.tearDown();
       expect(obj.def).to(equal, def);
     });
 
@@ -140,7 +140,7 @@ describe("Stub", function() {
         def: def
       };
       stubber.stub(obj, "def");
-      stubber.teardown();
+      stubber.tearDown();
       expect(obj.def).to(equal, def);
     });
 
@@ -153,7 +153,7 @@ describe("Stub", function() {
       stubber.stub(obj, "func");
       stubber.stub(obj, "func");
 
-      stubber.teardown();
+      stubber.tearDown();
       expect(obj.func).to(equal, func);
     });
   });
