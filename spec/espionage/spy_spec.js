@@ -2,12 +2,13 @@ describe("Spy", function() {
   before_each(function() {
     obj = {};
     spy = Espionage.Helpers.clone(Espionage.Spy);
+    stubber = Espionage.Helpers.clone(Espionage.Stub);
   });
 
   describe("spyOn", function() {
     before_each(function() {
       spy.reset(obj);
-      obj.stub("foo");
+      stubber.stub(obj, "foo");
     });
 
     it("should call the function given to spyOn", function() {
@@ -54,7 +55,7 @@ describe("Spy", function() {
     });
 
     it("should report a positive message expectation on a different method", function() {
-      obj.stub("bar");
+      stubber.stub(obj, "bar");
 
       spy.spyOn(obj, function() {
         obj.bar();
@@ -93,7 +94,7 @@ describe("Spy", function() {
     });
 
     it("should be true when called indirectly", function() {
-      obj.stub("bar");
+      stubber.stub(obj, "bar");
 
       var other_obj = {
         foo: function(obj) {
@@ -111,7 +112,7 @@ describe("Spy", function() {
   describe("arguments", function() {
     before_each(function() {
       spy.reset(obj);
-      obj.stub("foo");
+      stubber.stub(obj, "foo");
     });
 
     it("should have an empty array of arguments when none are provided", function() {
@@ -136,7 +137,7 @@ describe("Spy", function() {
     });
 
     it("should use the correct method", function() {
-      obj.stub("bar");
+      stubber.stub(obj, "bar");
 
       spy.spyOn(obj, function() {
         obj.bar(1, 2);
@@ -152,7 +153,7 @@ describe("Spy", function() {
 
     it("should return an array when passed an array", function() {
       var an_object = {};
-      an_object.stub("foo");
+      stubber.stub(an_object, "foo");
 
       spy.spyOn(an_object, function() {
         an_object.foo([]);

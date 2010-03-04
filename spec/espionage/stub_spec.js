@@ -42,6 +42,30 @@ describe("Stub", function() {
       stubber.stub(obj, "func");
       expect(an_object.func == func).to(be_false);
     });
+
+    it("should stub a value on an object as undefined if not given", function() {
+      var obj = {};
+      stubber.stub(obj, "foo");
+      obj.foo().should.equal(undefined);
+    });
+
+    it("should delete the property of an object which wasn't defined after teardown", function() {
+      var obj = {};
+
+      stubber.stub(obj, "foo");
+      Espionage.Stub.teardown();
+      obj.hasOwnProperty("foo").should.be(false);
+    });
+
+    it("should not delete the property if set to undefined before stubbing", function() {
+      var obj = {};
+
+      obj.foo = undefined;
+      stubber.stub(obj, "foo");
+      Espionage.Stub.teardown();
+
+      obj.hasOwnProperty("foo").should.be(true);
+    });
   });
 
   describe("stubs", function() {
@@ -131,25 +155,6 @@ describe("Stub", function() {
 
       stubber.teardown();
       expect(obj.func).to(equal, func);
-    });
-  });
-
-  describe("an object", function() {
-    it("should have the stub method", function() {
-      var obj = {};
-      expect(typeof(obj.stub)).to(equal, "function");
-    });
-
-    it("should be able to stub a method", function() {
-      var obj = {};
-      obj.stub("foo");
-      expect(typeof(obj.foo)).to(equal, "function");
-    });
-
-    it("should be able to set a return value on the stub", function() {
-      var obj = {};
-      obj.stub("foo", 1);
-      expect(obj.foo()).to(equal, 1);
     });
   });
 });
