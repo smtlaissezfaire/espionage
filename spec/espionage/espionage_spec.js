@@ -14,4 +14,36 @@ describe("Espionage", function() {
       Espionage.spyOn.should.equal(Espionage.Spy.spyOn);
     });
   });
+
+  describe("tearDown", function() {
+    before_each(function() {
+      Espionage.Stub.tearDown();
+
+      spy = Espionage.Helpers.clone(Espionage);
+    });
+
+    it("should call the stub's teardown function", function() {
+      var received = false;
+
+      spy.stub(Espionage.Stub, "tearDown", function() {
+        received = true;
+      });
+
+      spy.tearDown();
+
+      received.should.be(true);
+    });
+
+    it("should call the spy's teardown function", function() {
+      var received = false;
+
+      spy.stub(Espionage.Spy, "tearDown", function() {
+        received = true;
+      });
+
+      spy.tearDown();
+
+      received.should.be(true);
+    });
+  });
 });
