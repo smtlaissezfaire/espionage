@@ -9,7 +9,7 @@
       args.size.should.equal(1);
     });
   });
-[ ] replace received with a better name:
+[x] replace received with a better name:
   - intercepted
   - listened
   - ?

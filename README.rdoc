@@ -26,10 +26,10 @@ A javascript mocking/stubbing framework
 
   spyOn(obj, function() {
     obj.foo();
-    spy.received(obj, "foo") #=> true
+    spy.intercepted(obj, "foo") #=> true
   });
 
   spyOn(obj, function() {
     obj.foo();
-    spy.received(obj, "bar") #=> false
+    spy.intercepted(obj, "bar") #=> false
   });
