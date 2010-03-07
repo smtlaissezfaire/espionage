@@ -1,8 +1,6 @@
 describe("Spy", function() {
   before_each(function() {
     obj = {};
-    spy = Espionage.Helpers.clone(Espionage.Spy);
-    stubber = Espionage.Helpers.clone(Espionage.Stub);
   });
 
   describe("spyOn", function() {
@@ -47,11 +45,14 @@ describe("Spy", function() {
 
       spy.tearDown(obj);
 
-      try {
-        obj.received("foo");
-      } catch (e) {
-        e.name.should.equal("MockExpectationError");
-      }
+      spy.spyOn(obj, function() {
+        try {
+          obj.received("foo");
+        } catch (e) {
+          e.message.should.equal("expected foo but never got it");
+          e.name.should.equal("MockExpectationError");
+        }
+      });
     });
 
     it("should report a positive message expectation on a different method", function() {

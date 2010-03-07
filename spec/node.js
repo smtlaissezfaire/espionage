@@ -5,6 +5,15 @@ require.paths.unshift("./../lib");
 
 require("espionage");
 
+spy = Espionage;
+stubber = spy.Stub;
+
+JSpec.include({
+  beforeSpec: function() {
+    spy.tearDown();
+  }
+});
+
 JSpec.
   exec('spec/espionage/helpers_spec.js').
   exec('spec/espionage/spy_spec.js').
