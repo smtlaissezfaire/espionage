@@ -20,3 +20,5 @@
 [ ] unstub
 [ ] unstub with multiple calls
 [ ] "unstubbing" too many times should result in an error
+[ ] rename stub => fake
+[ ] spys should return their correct original values
