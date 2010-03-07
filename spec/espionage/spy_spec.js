@@ -128,5 +128,62 @@ describe("Spy", function() {
         obj.hasOwnProperty("intercepted").should.be(false);
       });
     });
+
+    describe("with arguments", function() {
+      it("should yield the arguments given to the third param / block", function() {
+        var obj = {};
+        spy.stub(obj, "foo");
+
+        spy.spyOn(obj, function() {
+          obj.foo();
+
+          spy.intercepted(obj, "foo", function(args) {
+            args.length.should.equal(0);
+          });
+        });
+      });
+
+      it("should yield the correct args", function() {
+        var obj = {};
+        spy.stub(obj, "foo");
+
+        spy.spyOn(obj, function() {
+          obj.foo("one", "two");
+
+          spy.intercepted(obj, "foo", function(args) {
+            args.length.should.equal(2);
+            args[0].should.equal("one");
+            args[1].should.equal("two");
+          });
+        });
+      });
+
+      it("should raise a mock expectation error if the fun is never called", function() {
+        var obj = {};
+        spy.stub(obj, "foo");
+
+        try {
+          spy.spyOn(obj, function() {
+            spy.intercepted(obj, "foo", function(args) {
+            });
+          });
+        } catch (e) {
+          e.name.should.equal("MockExpectationError");
+        }
+      });
+
+      it("should yield the arguments as an array, not as the raw list of arguments", function() {
+        var obj = {};
+        spy.stub(obj, "foo");
+
+        spy.spyOn(obj, function() {
+          obj.foo(1, 2);
+
+          spy.intercepted(obj, "foo", function(args) {
+            (args instanceof Array).should.be(true);
+          });
+        });
+      });
+    });
   });
 });
