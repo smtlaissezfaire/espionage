@@ -137,8 +137,8 @@ describe("Spy", function() {
         spy.spyOn(obj, function() {
           obj.foo();
 
-          spy.intercepted(obj, "foo", function(args) {
-            args.length.should.equal(0);
+          spy.intercepted(obj, "foo", function() {
+            arguments.length.should.equal(0);
           });
         });
       });
@@ -150,10 +150,10 @@ describe("Spy", function() {
         spy.spyOn(obj, function() {
           obj.foo("one", "two");
 
-          spy.intercepted(obj, "foo", function(args) {
-            args.length.should.equal(2);
-            args[0].should.equal("one");
-            args[1].should.equal("two");
+          spy.intercepted(obj, "foo", function() {
+            arguments.length.should.equal(2);
+            arguments[0].should.equal("one");
+            arguments[1].should.equal("two");
           });
         });
       });
@@ -172,19 +172,6 @@ describe("Spy", function() {
         }
       });
 
-      it("should yield the arguments as an array, not as the raw list of arguments", function() {
-        var obj = {};
-        spy.stub(obj, "foo");
-
-        spy.spyOn(obj, function() {
-          obj.foo(1, 2);
-
-          spy.intercepted(obj, "foo", function(args) {
-            (args instanceof Array).should.be(true);
-          });
-        });
-      });
-
       it("should yield to the function multiple times when called multiple times", function() {
         var obj = {};
         spy.stub(obj, "foo");
@@ -195,9 +182,9 @@ describe("Spy", function() {
           obj.foo("one");
           obj.foo("two");
 
-          spy.intercepted(obj, "foo", function(args) {
-            args.length.should.equal(1);
-            arg_pairs.push(args);
+          spy.intercepted(obj, "foo", function() {
+            arguments.length.should.equal(1);
+            arg_pairs.push(arguments);
           });
         });
 
