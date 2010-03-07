@@ -22,14 +22,14 @@ A javascript mocking/stubbing framework
 
 == mock expectations / test spies:
 
-  var obj = {}
+  var obj = {};
 
   spyOn(obj, function() {
     obj.foo();
-    obj.received("foo") #=> true
+    spy.received(obj, "foo") #=> true
   });
 
   spyOn(obj, function() {
     obj.foo();
-    obj.received("bar") #=> false
+    spy.received(obj, "bar") #=> false
   });

@@ -1,4 +1,4 @@
-[ ] add Espionage.received.  Don't add received methods onto individual objects.
+[x] add Espionage.received.  Don't add received methods onto individual objects.
 [x] remove addArgumentsFor Method
 [ ] replace with optional function to received:
   spy.spyOn(obj, function() {
@@ -9,6 +9,10 @@
       args.size.should.equal(1);
     });
   });
+[ ] replace received with a better name:
+  - intercepted
+  - listened
+  - ?
 [ ] don't modify objects outside of spyOn block
 [x] restore methods after spyOn
 [x] fix mock expectation error message
