@@ -1,5 +1,6 @@
 [ ] add Espionage.received.  Don't add received methods onto individual objects.
-[ ] remove addArgumentsFor Method, and replace with optional function:
+[x] remove addArgumentsFor Method
+[ ] replace with optional function to received:
   spy.spyOn(obj, function() {
     obj.foo("bar");
 
