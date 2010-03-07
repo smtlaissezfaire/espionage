@@ -1,0 +1,5 @@
+[ ] add Espionage.received
+[ ] remove addArgumentsFor Method
+[ ] don't modify objects in spyOn block
+[ ] restore methods after spyOn
+[ ] update README
