@@ -31,6 +31,17 @@ describe("Spy", function() {
       });
     });
 
+    it("should use the correct function name", function() {
+      spy.spyOn(obj, function() {
+        try {
+          obj.received("bar");
+        } catch (e) {
+          e.name.should.equal("MockExpectationError");
+          e.message.should.equal("expected bar but never got it");
+        }
+      });
+    });
+
     it("should report true when receiving a message", function() {
       spy.spyOn(obj, function() {
         obj.foo();
