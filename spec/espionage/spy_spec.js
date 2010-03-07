@@ -184,6 +184,26 @@ describe("Spy", function() {
           });
         });
       });
+
+      it("should yield to the function multiple times when called multiple times", function() {
+        var obj = {};
+        spy.stub(obj, "foo");
+
+        var arg_pairs = [];
+
+        spy.spyOn(obj, function() {
+          obj.foo("one");
+          obj.foo("two");
+
+          spy.intercepted(obj, "foo", function(args) {
+            args.length.should.equal(1);
+            arg_pairs.push(args);
+          });
+        });
+
+        arg_pairs[0][0].should.equal("one");
+        arg_pairs[1][0].should.equal("two");
+      });
     });
   });
 });

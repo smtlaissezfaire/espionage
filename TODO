@@ -1,6 +1,6 @@
 [x] add Espionage.received.  Don't add received methods onto individual objects.
 [x] remove addArgumentsFor Method
-[ ] replace with optional function to received:
+[x] replace with optional function to received:
   spy.spyOn(obj, function() {
     obj.foo("bar");
 
@@ -17,3 +17,6 @@
 [x] restore methods after spyOn
 [x] fix mock expectation error message
 [ ] update README
+[ ] unstub
+[ ] unstub with multiple calls
+[ ] "unstubbing" too many times should result in an error
