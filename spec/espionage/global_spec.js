@@ -62,5 +62,27 @@ describe("Espionage", function() {
 
       Object.stub().should.equal("something");
     });
+
+    it("should add spyOn and clean it up when done", function() {
+      Espionage.dirty();
+
+      var obj = {};
+      typeof(obj.spyOn).should.equal("function");
+
+      Espionage.clean();
+
+      typeof(obj.spyOn).should.equal("undefined");
+    });
+
+    it("should add intercepted and clean it up when done", function() {
+      Espionage.dirty();
+
+      var obj = {};
+      typeof(obj.intercepted).should.equal("function");
+
+      Espionage.clean();
+
+      typeof(obj.intercepted).should.equal("undefined");
+    });
   });
 });
