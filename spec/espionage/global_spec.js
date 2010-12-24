@@ -33,4 +33,34 @@ describe("Espionage", function() {
       });
     });
   });
+
+  describe("extending the object namespace", function() {
+    it("should add stub", function() {
+      Espionage.dirty();
+
+      var obj = {};
+      obj.stub("foo");
+      obj.foo().should.equal(undefined);
+
+      Espionage.clean();
+    });
+
+    it("should restore the old stub method after calling clean", function() {
+      var obj = {};
+
+      Espionage.dirty();
+      Espionage.clean();
+
+      obj.stub.should.be(undefined);
+    });
+
+    it("should really restore it to it's old value", function() {
+      Espionage.stub(Object.prototype, "stub", "something");
+
+      Espionage.dirty();
+      Espionage.clean();
+
+      Object.stub().should.equal("something");
+    });
+  });
 });
