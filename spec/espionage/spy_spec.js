@@ -130,6 +130,30 @@ describe("Spy", function() {
     });
 
     describe("with arguments", function() {
+      it("should call the old method with arguments when not stubbed", function() {
+        var math = {
+          plus: function(one, two) {
+            return one + two;
+          }
+        };
+
+        spy.spyOn(math, function() {
+          math.plus(1, 2).should.equal(3);
+        });
+      });
+
+      it("should call the old method with the correct 'this'", function() {
+        var math = {
+          foo: function() {
+            return this;
+          }
+        };
+
+        spy.spyOn(math, function() {
+          math.foo().should.equal(math);
+        });
+      });
+
       it("should yield the arguments given to the third param / block", function() {
         var obj = {};
         spy.stub(obj, "foo");
