@@ -1,8 +1,9 @@
-require.paths.unshift('spec', '/Users/scotttaylor/.rvm/gems/ruby/1.8.6/gems/jspec-3.3.2/lib', 'lib');
+var path = require("path");
+
+require.paths.unshift(path.join(__dirname, "jspec", "lib"));
+require.paths.unshift(path.join(__dirname, "..", "lib"));
+
 require('jspec');
-
-require.paths.unshift("./../lib");
-
 require("espionage");
 
 spy = Espionage;
