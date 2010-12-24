@@ -84,5 +84,20 @@ describe("Espionage", function() {
 
       typeof(obj.intercepted).should.equal("undefined");
     });
+
+    it("should keep the arguments the same for spyOn", function() {
+      Espionage.dirty();
+
+      var obj = {};
+      obj.stub("foo");
+
+      spyOn(obj, function() {
+        obj.foo();
+
+        obj.intercepted("foo").should.equal(true);
+      });
+
+      Espionage.clean();
+    });
   });
 });
